@@ -8,4 +8,12 @@ public class Log {
     public  Log(WeatherMonitoringSystem ws){
         this.ws = ws;
     }
+
+    public void displayPressure(int pressure){
+        System.out.println("Log: pressure = " + pressure + "millibars");
+    }
+
+    public void displayPressureTrend(int pressureTrend){
+        System.out.println("Log: pressure trend = " + pressureTrend);
+    }
 }
