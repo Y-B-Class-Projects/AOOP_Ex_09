@@ -4,6 +4,8 @@ public class LogPressObserver implements Observer{
     private Log log;
 
     public LogPressObserver(Log log){
+        System.out.println(getClass().getSimpleName() +  " was created");
+
         this.log = log;
     }
 

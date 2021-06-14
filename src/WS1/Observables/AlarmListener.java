@@ -1,4 +1,8 @@
 package WS1.Observables;
 
-public class AlarmListener {
+
+public interface AlarmListener {
+    void wakeUp();
+    String getName();
 }
+
