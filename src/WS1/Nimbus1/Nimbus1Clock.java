@@ -1,9 +1,10 @@
 package WS1.Nimbus1;
 import WS1.Observables.AlarmClock;
+import WS1.Observables.AlarmClockImp;
 
-public class Nimbus1Clock extends AlarmClock
+public class Nimbus1Clock extends AlarmClockImp
 {
-    protected Nimbus1Clock()
+    public Nimbus1Clock()
     {
         new Thread("polling Alarm Clock Records")
         {
@@ -13,7 +14,7 @@ public class Nimbus1Clock extends AlarmClock
                 for(int i=0;i<60;i++)
                 {
                     //System.out.println("Thread: " + getName() + " running");
-                    tic();
+                    notifyClockListeners();
                     try  { Thread.sleep(CLOCK_INTERVAL_MILLIS);}
                     catch (InterruptedException e)
                     { e.printStackTrace(); }
@@ -22,10 +23,5 @@ public class Nimbus1Clock extends AlarmClock
         }.start();
     }
 
-    public static AlarmClock theInstance()
-    {
-        if(null==instance)
-            instance = new Nimbus1Clock();
-        return instance;
-    }
+
 }

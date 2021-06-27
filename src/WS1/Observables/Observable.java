@@ -7,9 +7,6 @@ import WS1.Observers.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Observable {
     protected List<Observer> itsObservers;
 
@@ -30,12 +27,14 @@ public class Observable {
 
         String name = "";
 
-        if (this.getClass() == Nimbus1PressureSensor.class)
-            name = "pressure";
-        else if (this.getClass() == Nimbus1TemepratureSensor.class)
-            name = "temperature";
+        if (this.getClass() == Sensor.class) {
+            name = ((Sensor) this).type;
+        }
         else
             name = "pressure trend";
+
+        System.out.println(this.getClass());
+        System.out.println("------------------------------------^^");
 
         System.out.println(observer.getClass().getSimpleName()  + " observes " + name );
     }

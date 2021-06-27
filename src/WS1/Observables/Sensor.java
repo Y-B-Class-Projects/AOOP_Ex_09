@@ -1,22 +1,28 @@
 package WS1.Observables;
 
-import WS1.Nimbus1.Nimbus1Clock;
+import WS1.API.SensorImp;
+import WS1.System.StationToolKit;
 
 
-public abstract class Sensor extends Observable {
+public class Sensor extends Observable {
     private int lastReading;
     private int interval;
-    private String type;
+    public String type;
+    protected SensorImp itsSensorImp;
 
-    public Sensor(String type, int interval){
+    public Sensor(AlarmClock alarmClock, StationToolKit st , String type, int interval) throws ClassNotFoundException {
         this.type = type;
         this.interval = interval;
+        this.itsSensorImp = st.makeSensorImp(type);
 
-        (AlarmClock.theInstance()).register(interval,new SensorAlarmListener(this));
+
+        alarmClock.register(interval,new SensorAlarmListener(this));
     }
 
 
-    public abstract int read();
+    public int read(){
+        return itsSensorImp.read();
+    }
 
     public void check(){
         int pressure = read();

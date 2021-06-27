@@ -9,10 +9,11 @@ import WS1.Observers.MonitoringScreen;
 public class MainClassWS1
 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         WeatherMonitoringSystem ws = WeatherMonitoringSystem.theInstance();
 
         MonitoringScreen p_MonitorScreen = new MonitoringScreen(ws);
         Log p_log = new Log(ws);
+
     }
 }

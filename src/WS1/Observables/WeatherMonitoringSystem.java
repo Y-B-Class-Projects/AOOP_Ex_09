@@ -10,21 +10,19 @@ public class WeatherMonitoringSystem {
 
     private static WeatherMonitoringSystem single_instance = null;
 
-    private Nimbus1TemepratureSensor temperatureSensor;
-    private Nimbus1PressureSensor pressureSensor;
+    private Sensor temperatureSensor;
+    private Sensor pressureSensor;
     private PressureTrendSensor pressureTrendSensor;
 
 
     public WeatherMonitoringSystem(){
         System.out.println(getClass().getSimpleName() +  " was created");
 
-        AlarmClock clock = Nimbus1Clock.theInstance();
-
-        pressureTrendSensor = new PressureTrendSensor();
-        pressureSensor = new Nimbus1PressureSensor("pressure", 1100);
-        temperatureSensor = new Nimbus1TemepratureSensor("temperature", 700);
-
-        pressureSensor.addObserve(pressureTrendSensor);
+        //pressureTrendSensor = new PressureTrendSensor();
+        //AlarmClock ac = new AlarmClock(Nimbus1Clock.theInstance());
+        //pressureSensor = new Sensor(ac, "pressure", 1100 ,new Nimbus1PressureSensor());
+        //temperatureSensor = new Sensor(ac, "temperature", 700, new Nimbus1TemepratureSensor());
+        //pressureSensor.addObserve(pressureTrendSensor);
 
     }
 
@@ -36,15 +34,27 @@ public class WeatherMonitoringSystem {
         return single_instance;
     }
 
-    public Nimbus1TemepratureSensor getTemperatureSensor() {
+    public Sensor getTemperatureSensor() {
         return temperatureSensor;
     }
 
-    public Nimbus1PressureSensor getPressureSensor() {
+    public Sensor getPressureSensor() {
         return pressureSensor;
     }
 
     public PressureTrendSensor getPressureTrendSensor() {
         return pressureTrendSensor;
+    }
+
+    public void setTemperatureSensor(Sensor temperatureSensor) {
+         this.temperatureSensor = temperatureSensor;
+    }
+
+    public void setPressureSensor(Sensor pressureSensor) {
+        this.pressureSensor = pressureSensor;
+    }
+
+    public void setPressureTrendSensor(PressureTrendSensor pressureTrendSensor) {
+        this.pressureTrendSensor = pressureTrendSensor;
     }
 }
